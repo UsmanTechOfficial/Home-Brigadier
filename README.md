@@ -67,7 +67,7 @@ Once the app is installed, you can:
 </a>
 
 <a href="https://apps.apple.com/us/app/home-brigadier/id123456789">
-  <img src="https://upload.wikimedia.org/wikipedia/commons/5/5f/Download_on_the_App_Store_Badge.svg" alt="Download on the App Store" width="200"/>
+  <img src="https://github.com/muhammadusmantech/Home-Brigadier/blob/main/assets/screenshot/download-on-the-app-store-apple-logo-svgrepo-com.svg" alt="Download on the App Store" width="200"/>
 </a>
 
 ## Project Structure
