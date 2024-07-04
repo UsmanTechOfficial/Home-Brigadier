@@ -1,79 +1,92 @@
-# Flutter Project Setup Guide
+# Home Brigadier App
 
-This guide will help you set up a Flutter project from scratch, including downloading the Flutter SDK and running the project on both Windows and Mac.
+<img src="https://github.com/muhammadusmantech/Home-Brigadier/blob/main/assets/launcher/ic_launcher.png" alt="Home Brigadier" width="300" />
 
-## Table of Contents
+## Overview
 
-1. [Prerequisites](#prerequisites)
-2. [Downloading the Flutter SDK](#downloading-the-flutter-sdk)
-   - [Windows](#windows)
-   - [Mac](#mac)
-3. [Setting Up Your Development Environment](#setting-up-your-development-environment)
-   - [Windows](#windows-1)
-   - [Mac](#mac-1)
-4. [Running the Flutter Project](#running-the-flutter-project)
-5. [Additional Resources](#additional-resources)
+**Home Brigadier** is a household service provider app that allows users to book and customize various household services. It offers an efficient platform for service providers and clients to connect and manage their service needs.
 
-## Prerequisites
+## Features
 
-- A computer running Windows or MacOS
-- Git installed on your system (optional but recommended for version control)
-- An IDE or code editor (Visual Studio Code with Flutter and Dart plugins, or Android Studio)
+- **Seller and Buyer Sites:** Separate interfaces for service providers and clients.
+- **Create Booking:** Easily create bookings for various services.
+- **Booking Customization:** Customize bookings to fit specific needs.
+- **Adjust Price:** Modify service prices as needed.
+- **Select Favorite Seller:** Choose and save favorite service providers.
+- **Schedule Appointments:** Set up and manage service appointments.
+- **Make Payment:** Pay using Apple Pay or Google Pay.
+- **Create Service:** Anyone can create a service and start earning.
 
-## Downloading the Flutter SDK
+## Frameworks and Technologies
 
-### Windows
+- **Framework:** Flutter
+- **Tools:** Git, Stripe Payment, CI/CD, Firebase Messaging, and more.
 
-1. Go to the [Flutter SDK releases](https://docs.flutter.dev/get-started/install/windows#download-the-flutter-sdk) page.
-2. Download the latest stable release ZIP file.
-3. Extract the ZIP file to a location of your choice (e.g., `C:\src\flutter`).
+## Screenshots
 
-### Mac
+<img src="https://github.com/muhammadusmantech/home-brigadier/blob/main/assets/screenshot/Screenshot_20240705-011927.png" alt="Screenshot 1" width="200"/>
+<img src="https://github.com/muhammadusmantech/home-brigadier/blob/main/assets/screenshot/Screenshot_20240705-011932.png" alt="Screenshot 2" width="200"/>
+<img src="https://github.com/muhammadusmantech/home-brigadier/blob/main/assets/screenshot/Screenshot_20240705-011936.png" alt="Screenshot 3" width="200"/>
 
-1. Go to the [Flutter SDK releases](https://docs.flutter.dev/get-started/install/macos#download-the-flutter-sdk) page.
-2. Download the latest stable release ZIP file.
-3. Extract the ZIP file to a location of your choice (e.g., `~/development/flutter`).
+## Installation
 
-## Setting Up Your Development Environment
+To run this project locally, follow these steps:
 
-### Windows
+1. **Clone the repository:**
 
-1. **Update your system's PATH:**
-   - Open the Start Search, type in "env", and select "Edit the system environment variables".
-   - In the System Properties window, click on the "Environment Variables" button.
-   - Under "System variables", find the `Path` variable, select it, and click "Edit".
-   - Click "New" and add the path to the `flutter\bin` directory (e.g., `C:\src\flutter\bin`).
-   - Click "OK" to close all the windows.
+    ```bash
+    git clone https://github.com/muhammadusmantech/HomeBrigadier.git
+    cd HomeBrigadier
+    ```
 
-2. **Install required dependencies:**
-   - Open a command prompt and run `flutter doctor`.
-   - Follow the instructions to install any missing dependencies, such as the Android SDK, if required.
+2. **Install dependencies:**
 
-### Mac
+    ```bash
+    flutter pub get
+    ```
 
-1. **Update your system's PATH:**
-   - Open a terminal.
-   - Open (or create) the `.zshrc` file in your home directory:
-     ```bash
-     nano ~/.zshrc
-     ```
-   - Add the following line at the end of the file:
-     ```bash
-     export PATH="$PATH:`flutter_sdk_path`/flutter/bin"
-     ```
-     Replace `flutter_sdk_path` with the path where you extracted Flutter.
-   - Save the file and run:
-     ```bash
-     source ~/.zshrc
-     ```
+3. **Run the app:**
 
-2. **Install required dependencies:**
-   - Run `flutter doctor` in the terminal.
-   - Follow the instructions to install any missing dependencies, such as Xcode or Android Studio, if required.
+    ```bash
+    flutter run
+    ```
 
-## Running the Flutter Project
+## Usage
 
-1. **Clone the project repository (if applicable):**
-   ```bash
-   git clone https://github.com/your-username/your-flutter-project.git
-   cd your-flutter-project
+Once the app is installed, you can:
+
+- **Create and Customize Bookings:** Set up and customize service bookings.
+- **Manage Appointments:** Schedule and manage service appointments.
+- **Process Payments:** Make secure payments using Apple Pay or Google Pay.
+- **Provide Services:** Create services and start earning as a service provider.
+
+## Download
+
+<a href="https://play.google.com/store/apps/details?id=com.homebrigadier.app">
+  <img src="https://upload.wikimedia.org/wikipedia/commons/7/78/Google_Play_Store_badge_EN.svg" alt="Download on Google Play" width="200"/>
+</a>
+
+<a href="https://apps.apple.com/us/app/home-brigadier/id123456789">
+  <img src="https://upload.wikimedia.org/wikipedia/commons/5/5f/Download_on_the_App_Store_Badge.svg" alt="Download on the App Store" width="200"/>
+</a>
+
+## Project Structure
+
+- `lib/main.dart`: Entry point of the application.
+- `lib/app/`: Contains the main application structure.
+  - `lib/app/data/`: Contains data models.
+  - `lib/app/modules/`: Contains feature modules.
+    - `lib/app/modules/home/`: Contains the home module.
+      - `controllers/`: Contains controllers for the home module.
+      - `bindings/`: Contains bindings for the home module.
+      - `views/`: Contains views for the home module.
+    - `lib/app/modules/booking/`: Contains the booking module.
+      - `controllers/`: Contains controllers for the booking module.
+      - `bindings/`: Contains bindings for the booking module.
+      - `views/`: Contains views for the booking module.
+  - `lib/app/routes/`: Contains the route management.
+  - `lib/app/widgets/`: Contains reusable widgets.
+
+---
+
+**Home Brigadier** © 2023. All rights reserved.
