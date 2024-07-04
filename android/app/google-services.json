@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "679526083430",
+    "project_id": "qutham-projects",
+    "storage_bucket": "qutham-projects.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:679526083430:android:0fa86f39e43c4d66b276a7",
+        "android_client_info": {
+          "package_name": "com.owisoft.homebrigade"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCe83yDbJ4fFTA0F7Zpz7CA6OM4mzHtAgg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

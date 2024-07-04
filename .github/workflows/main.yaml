@@ -1,0 +1,222 @@
+name: Android Release
+
+on:
+  push:
+    branches: ["none"]
+  pull_request:
+    branches: ["none"]
+  workflow_dispatch:
+
+jobs:
+  build:
+    name: Create Android Build
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set version number
+        run: echo "VERSION_NUMBER=0.1.24+${{ github.run_number }}" >> $GITHUB_ENV
+
+      - name: Update version in pubspec.yaml
+        run: sed -i 's/99.99.99+99/${{ env.VERSION_NUMBER }}/g' pubspec.yaml
+
+      - name: Download Android keystore
+        id: android_keystore
+        uses: timheuer/base64-to-file@v1.0.3
+        with:
+          fileName: upload-keystore.jks
+          encodedString: ${{ secrets.KEYSTORE_BASE64 }}
+      - name: Create key.properties
+        run: |
+          echo "storeFile=${{ steps.android_keystore.outputs.filePath }}" > android/key.properties
+          echo "storePassword=${{ secrets.STORE_PASSWORD }}" >> android/key.properties
+          echo "keyPassword=${{ secrets.KEY_PASSWORD }}" >> android/key.properties
+          echo "keyAlias=${{ secrets.KEY_ALIAS }}" >> android/key.properties
+
+      - uses: actions/setup-java@v3
+        with:
+          distribution: 'temurin'
+          java-version: '19.0.2'
+          cache: "gradle"
+
+      - uses: subosito/flutter-action@v2
+        with:
+          flutter-version: '3.19.6'
+          channel: 'stable'
+          cache: "true"
+
+      - name: Get dependencies
+        run: flutter pub get
+
+      - name: Start Android Release Build
+        run: flutter build appbundle
+
+      - name: Upload Android Release
+        uses: actions/upload-artifact@v2
+        with:
+          name: android-release
+          path: build/app/outputs/bundle/release/app-release.aab
+
+  deploy:
+    name: Deploy Android Build
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Get Android Build from artifacts
+        uses: actions/download-artifact@v3
+        with:
+          name: android-release
+          path: .
+      - name: Release Build to internal track
+        uses: r0adkll/upload-google-play@v1
+        with:
+          serviceAccountJsonPlainText: ${{ secrets.SERVICE_ACCOUNT_JSON }}
+          packageName: 'com.owisoft.homebrigade'
+          releaseFiles: app-release.aab
+          track: alpha
+          status: completed
+
+
+#name: Android Release
+#
+#on:
+#  push:
+#    branches: ["usman"]
+#  pull_request:
+#    branches: ["master"]
+#  workflow_dispatch:
+#
+#jobs:
+#  build:
+#    name: Create Android Build
+#    runs-on: ubuntu-latest
+#    steps:
+#      - uses: actions/checkout@v3
+#
+#      - name: Set version number
+#        run: echo "VERSION_NUMBER=0.1.23+${{ github.run_number }}" >> $GITHUB_ENV
+#
+#      - name: Update version in pubspec.yaml
+#        run: sed -i 's/99.99.99+99/${{ env.VERSION_NUMBER }}/g' pubspec.yaml
+#
+#      - name: Download Android keystore
+#        id: android_keystore
+#        uses: timheuer/base64-to-file@v1.0.3
+#        with:
+#          fileName: upload-keystore.jks
+#          encodedString: ${{ secrets.KEYSTORE_BASE64 }}
+#      - name: Create key.properties
+#        run: |
+#          echo "storeFile=${{ steps.android_keystore.outputs.filePath }}" > android/key.properties
+#          echo "storePassword=${{ secrets.STORE_PASSWORD }}" >> android/key.properties
+#          echo "keyPassword=${{ secrets.KEY_PASSWORD }}" >> android/key.properties
+#          echo "keyAlias=${{ secrets.KEY_ALIAS }}" >> android/key.properties
+#
+#      - uses: actions/setup-java@v3
+#        with:
+#          distribution: 'temurin'
+#          java-version: '19.0.2'
+#          cache: gradle
+#
+#      - uses: subosito/flutter-action@v2
+#        with:
+#          flutter-version: '3.19.6'
+#          channel: 'stable'
+#          cache: true
+#
+#      - name: Get dependencies
+#        run: flutter pub get
+#
+#      - name: Start Android Release Build
+#        run: flutter build appbundle
+#
+#      - name: Push to Releases
+#        uses: ncipollo/release-action@v1
+#        with:
+#          artifacts: "build/app/outputs/apk/release/*,build/ios/iphoneos/app.ipa"
+#          tag: v1.0.${{ github.run_number }}
+#          token: ${{ secrets.TOKEN }}
+##      - name: Upload Android Release
+##        uses: actions/upload-artifact@v2
+##        with:
+##          name: android-release
+##          path: build/app/outputs/bundle/release/app-release.aab
+#
+#  deploy:
+#    name: Deploy Android Build
+#    needs: build
+#    runs-on: ubuntu-latest
+#    steps:
+#      - uses: actions/checkout@v3
+#      - name: Get Android Build from artifacts
+#        uses: actions/download-artifact@v2
+#        with:
+#          name: android-release
+#      - name: Release Build to internal track
+#        uses: r0adkll/upload-google-play@v1
+#        with:
+#          serviceAccountJsonPlainText: ${{ secrets.SERVICE_ACCOUNT_JSON }}
+#          packageName: 'com.owisoft.homebrigade'
+#          releaseFiles: build/app/outputs/bundle/release/app-release.aab
+#          track: alpha
+#          status: completed
+#
+
+#on:
+#  pull_request:
+#    branches:
+#      - main
+#
+#  push:
+#    branches:
+#      - usman
+#name: "Build & Release"
+#jobs:
+#  build:
+#    name: Build & Release
+#    runs-on: ubuntu-latest
+#    strategy:
+#      matrix:
+#        flutter: [ 3.19.6 ]  # Specify your desired Flutter version
+#        java: [ 19.0.2 ]         # Specify your desired Java version
+#
+#    steps:
+#      - name: Checkout repository
+#        uses: actions/checkout@v2
+#
+#      - name: Set up Java
+#        uses: actions/setup-java@v3
+#        with:
+#          distribution: 'temurin' # You can choose other distributions like 'zulu', 'adopt', etc.
+#          java-version: ${{ matrix.java }}
+#
+#      - name: Set up Flutter
+#        uses: subosito/flutter-action@v2
+#        with:
+#          flutter-version: ${{ matrix.flutter }}
+#
+#      - name: Flutter Clean
+#        run: flutter clean
+#
+#      - name: Install dependencies
+#        run: flutter pub get
+#
+#      - run: flutter clean
+#      - run: flutter build appbundle
+#
+#
+#      #      - run: |
+#      #          flutter build ios --no-codesign
+#      #          cd build/ios/iphoneos
+#      #          mkdir Payload
+#      #          cd Payload
+#      #          ln -s ../Runner.app
+#      #          cd ..
+#      #          zip -r app.ipa Payload
+#      - name: Push to Releases
+#        uses: ncipollo/release-action@v1
+#        with:
+#          artifacts: "build/app/outputs/apk/release/*,build/ios/iphoneos/app.ipa"
+#          tag: v1.0.${{ github.run_number }}
+#          token: ${{ secrets.TOKEN }}
