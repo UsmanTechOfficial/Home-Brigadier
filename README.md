@@ -70,7 +70,7 @@ Once the app is installed, you can:
   <img src="https://upload.wikimedia.org/wikipedia/commons/7/78/Google_Play_Store_badge_EN.svg" alt="Download on Google Play" width="200"/>
 </a>
 
-<a href="https://apps.apple.com/us/app/home-brigadier/id123456789">
+<a href="https://apps.apple.com/pk/app/home-brigadier/id6478535563">
   <img src="https://github.com/muhammadusmantech/Home-Brigadier/blob/main/assets/screenshot/download-on-the-app-store-apple-logo-svgrepo-com.svg" alt="Download on the App Store" width="200"/>
 </a>
 
