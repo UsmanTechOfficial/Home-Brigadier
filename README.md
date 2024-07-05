@@ -20,7 +20,10 @@
 ## Frameworks and Technologies
 
 - **Framework:** Flutter
-- **Tools:** Git, Stripe Payment, CI/CD, Firebase Messaging, and more.
+- **Payment:** Stripe (Google pay, Apple pay)
+- **Backend:** RESTfull API's
+- **Location:** Google Map, Google Places Prediction.
+- **Tools:** Git, CI/CD, Notifications
 
 ## Screenshots
 
