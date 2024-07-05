@@ -24,9 +24,10 @@
 
 ## Screenshots
 
-<img src="https://github.com/muhammadusmantech/home-brigadier/blob/main/assets/screenshot/Screenshot_20240705-011927.png" alt="Screenshot 1" width="200"/>
-<img src="https://github.com/muhammadusmantech/home-brigadier/blob/main/assets/screenshot/Screenshot_20240705-011932.png" alt="Screenshot 2" width="200"/>
-<img src="https://github.com/muhammadusmantech/home-brigadier/blob/main/assets/screenshot/Screenshot_20240705-011936.png" alt="Screenshot 3" width="200"/>
+<img src="https://github.com/muhammadusmantech/Home-Brigadier/blob/main/assets/screenshot/WhatsApp%20Image%202024-07-05%20at%2009.20.31_3fad4276.jpg" alt="Screenshot 1" width="200"/>
+<img src="https://github.com/muhammadusmantech/Home-Brigadier/blob/main/assets/screenshot/WhatsApp%20Image%202024-07-05%20at%2009.20.31_1af8b9aa.jpg" alt="Screenshot 2" width="200"/>
+<img src="https://github.com/muhammadusmantech/Home-Brigadier/blob/main/assets/screenshot/WhatsApp%20Image%202024-07-05%20at%2009.20.30_cc75d58f.jpg" alt="Screenshot 3" width="200"/>
+<img src="https://github.com/muhammadusmantech/Home-Brigadier/blob/main/assets/screenshot/WhatsApp%20Image%202024-07-05%20at%2009.20.30_6e153d49.jpg" alt="Screenshot 3" width="200"/>
 
 ## Installation
 
